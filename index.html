@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Ishu — Shubh Ashtami 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #f0c060;
+    --deep-gold: #c8900a;
+    --crimson: #8b1a1a;
+    --vermillion: #c0392b;
+    --saffron: #e67e22;
+    --cream: #fdf6e3;
+    --deep: #1a0a00;
+    --glow: #ffe08a;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: #0d0500;
+color: var(–cream);
+font-family: ‘Cormorant Garamond’, serif;
+overflow-x: hidden;
+cursor: default;
+}
+
+/* –– PARTICLES –– */
+#particles {
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+pointer-events: none;
+z-index: 0;
+overflow: hidden;
+}
+.petal {
+position: absolute;
+width: 8px; height: 8px;
+border-radius: 50% 0 50% 0;
+opacity: 0;
+animation: fall linear infinite;
+}
+@keyframes fall {
+0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+10%  { opacity: 0.8; }
+90%  { opacity: 0.4; }
+100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* –– HERO –– */
+#hero {
+position: relative;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 2rem;
+z-index: 1;
+overflow: hidden;
+}
+
+#hero::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,144,10,0.18) 0%, transparent 70%),
+radial-gradient(ellipse 50% 40% at 50% 80%, rgba(139,26,26,0.25) 0%, transparent 60%);
+z-index: 0;
+}
+
+.mandala-ring {
+position: absolute;
+border-radius: 50%;
+border: 1px solid rgba(240,192,96,0.15);
+animation: spin linear infinite;
+}
+.mandala-ring:nth-child(1) { width: 600px; height: 600px; animation-duration: 80s; border-style: dashed; }
+.mandala-ring:nth-child(2) { width: 480px; height: 480px; animation-duration: 60s; animation-direction: reverse; }
+.mandala-ring:nth-child(3) { width: 360px; height: 360px; animation-duration: 40s; border-color: rgba(230,126,34,0.2); }
+
+@keyframes spin {
+from { transform: rotate(0deg); }
+to   { transform: rotate(360deg); }
+}
+
+.diya-icon {
+font-size: 3.5rem;
+animation: flicker 2.5s ease-in-out infinite;
+position: relative; z-index: 2;
+margin-bottom: 1rem;
+filter: drop-shadow(0 0 20px #f0c060);
+}
+@keyframes flicker {
+0%,100% { filter: drop-shadow(0 0 20px #f0c060) brightness(1); }
+50%      { filter: drop-shadow(0 0 35px #ffd700) brightness(1.2); }
+75%      { filter: drop-shadow(0 0 15px #e67e22) brightness(0.95); }
+}
+
+.subtitle-top {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(0.55rem, 1.5vw, 0.75rem);
+letter-spacing: 0.5em;
+color: var(–saffron);
+text-transform: uppercase;
+opacity: 0;
+animation: fadeUp 1s ease 0.3s forwards;
+position: relative; z-index: 2;
+margin-bottom: 1.2rem;
+}
+
+h1.main-title {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(2.8rem, 8vw, 6rem);
+font-weight: 700;
+color: var(–gold);
+text-shadow:
+0 0 40px rgba(240,192,96,0.6),
+0 0 80px rgba(240,192,96,0.3);
+line-height: 1.1;
+opacity: 0;
+animation: fadeUp 1s ease 0.6s forwards;
+position: relative; z-index: 2;
+}
+
+.name-highlight {
+display: block;
+color: #fff;
+font-size: clamp(3.5rem, 10vw, 7.5rem);
+text-shadow:
+0 0 30px rgba(255,224,138,0.9),
+0 0 60px rgba(240,192,96,0.6),
+0 0 100px rgba(200,144,10,0.4);
+}
+
+.hero-divider {
+display: flex;
+align-items: center;
+gap: 1rem;
+margin: 2rem auto;
+opacity: 0;
+animation: fadeUp 1s ease 0.9s forwards;
+position: relative; z-index: 2;
+}
+.hero-divider span { color: var(–gold); font-size: 1.2rem; }
+.hero-divider::before, .hero-divider::after {
+content: ‘’;
+display: block;
+width: 80px; height: 1px;
+background: linear-gradient(to right, transparent, var(–gold), transparent);
+}
+
+.hero-quote {
+font-family: ‘IM Fell English’, serif;
+font-style: italic;
+font-size: clamp(1rem, 2.5vw, 1.4rem);
+color: rgba(253,246,227,0.85);
+max-width: 560px;
+line-height: 1.8;
+opacity: 0;
+animation: fadeUp 1s ease 1.2s forwards;
+position: relative; z-index: 2;
+}
+
+.scroll-hint {
+position: absolute;
+bottom: 2.5rem;
+left: 50%;
+transform: translateX(-50%);
+display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+color: rgba(240,192,96,0.6);
+font-size: 0.7rem;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+animation: bounce 2s ease infinite;
+z-index: 2;
+}
+.scroll-hint::after {
+content: ‘↓’;
+font-size: 1.2rem;
+color: var(–gold);
+}
+@keyframes bounce {
+0%,100% { transform: translateX(-50%) translateY(0); }
+50%      { transform: translateX(-50%) translateY(8px); }
+}
+
+/* –– SECTION SHARED –– */
+section {
+position: relative;
+z-index: 1;
+padding: 5rem 1.5rem;
+}
+
+.section-label {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: 0.6rem;
+letter-spacing: 0.6em;
+color: var(–saffron);
+text-transform: uppercase;
+text-align: center;
+margin-bottom: 1rem;
+opacity: 0.8;
+}
+
+.section-title {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(1.4rem, 4vw, 2.2rem);
+color: var(–gold);
+text-align: center;
+margin-bottom: 3rem;
+text-shadow: 0 0 30px rgba(240,192,96,0.4);
+}
+
+/* –– INTRO SECTION –– */
+#intro {
+max-width: 700px;
+margin: 0 auto;
+text-align: center;
+}
+#intro p {
+font-family: ‘IM Fell English’, serif;
+font-size: clamp(1.05rem, 2vw, 1.3rem);
+line-height: 2;
+color: rgba(253,246,227,0.9);
+}
+#intro .big-quote {
+font-size: clamp(1.3rem, 3vw, 1.7rem);
+font-style: italic;
+color: var(–gold);
+margin: 2rem 0;
+line-height: 1.7;
+}
+
+/* –– 9 FORMS GRID –– */
+#navdurga {
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.forms-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 1.5rem;
+}
+
+.form-card {
+position: relative;
+background: linear-gradient(135deg, rgba(200,144,10,0.08), rgba(139,26,26,0.12));
+border: 1px solid rgba(240,192,96,0.2);
+border-radius: 2px;
+padding: 2rem 1.8rem;
+transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+overflow: hidden;
+}
+.form-card::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse at top left, rgba(240,192,96,0.06), transparent 70%);
+opacity: 0;
+transition: opacity 0.3s;
+}
+.form-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 40px rgba(200,144,10,0.2), 0 0 0 1px rgba(240,192,96,0.4);
+border-color: rgba(240,192,96,0.5);
+}
+.form-card:hover::before { opacity: 1; }
+
+.card-number {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: 0.65rem;
+letter-spacing: 0.4em;
+color: rgba(230,126,34,0.7);
+margin-bottom: 0.5rem;
+}
+.card-goddess {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+color: var(–gold);
+margin-bottom: 0.3rem;
+}
+.card-meaning {
+font-family: ‘IM Fell English’, serif;
+font-style: italic;
+font-size: 0.85rem;
+color: var(–saffron);
+margin-bottom: 1rem;
+opacity: 0.9;
+}
+.card-emoji {
+font-size: 2rem;
+position: absolute;
+top: 1.5rem;
+right: 1.8rem;
+opacity: 0.7;
+}
+.card-desc {
+font-size: clamp(0.9rem, 1.5vw, 1rem);
+line-height: 1.8;
+color: rgba(253,246,227,0.82);
+}
+.card-isha {
+margin-top: 1rem;
+font-family: ‘IM Fell English’, serif;
+font-style: italic;
+font-size: 0.95rem;
+color: rgba(253,246,227,0.65);
+border-top: 1px solid rgba(240,192,96,0.15);
+padding-top: 0.8rem;
+line-height: 1.7;
+}
+
+/* –– CLOSING LETTER –– */
+#closing {
+max-width: 680px;
+margin: 0 auto;
+text-align: center;
+}
+.letter-box {
+background: linear-gradient(160deg, rgba(200,144,10,0.07), rgba(139,26,26,0.1));
+border: 1px solid rgba(240,192,96,0.25);
+padding: 3.5rem 3rem;
+position: relative;
+}
+.letter-box::before, .letter-box::after {
+content: ‘✦’;
+position: absolute;
+color: var(–gold);
+font-size: 1.2rem;
+opacity: 0.5;
+}
+.letter-box::before { top: 1rem; left: 1rem; }
+.letter-box::after  { bottom: 1rem; right: 1rem; }
+
+.letter-text {
+font-family: ‘IM Fell English’, serif;
+font-size: clamp(1.05rem, 2vw, 1.25rem);
+line-height: 2;
+color: rgba(253,246,227,0.9);
+text-align: left;
+}
+.letter-sign {
+margin-top: 2rem;
+text-align: right;
+font-family: ‘Cormorant Garamond’, serif;
+font-style: italic;
+font-size: 1.1rem;
+color: var(–gold);
+}
+
+/* –– BLESSINGS –– */
+#blessings {
+text-align: center;
+max-width: 600px;
+margin: 0 auto;
+}
+.blessing-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 1.2rem;
+margin-top: 2rem;
+}
+.blessing-list li {
+font-family: ‘IM Fell English’, serif;
+font-size: clamp(1rem, 2vw, 1.2rem);
+color: rgba(253,246,227,0.85);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.8rem;
+line-height: 1.7;
+}
+.blessing-list li::before {
+content: ‘🌸’;
+font-size: 1rem;
+flex-shrink: 0;
+}
+
+/* –– FOOTER –– */
+footer {
+text-align: center;
+padding: 4rem 1rem 3rem;
+position: relative; z-index: 1;
+border-top: 1px solid rgba(240,192,96,0.1);
+}
+footer .footer-diya { font-size: 2.5rem; animation: flicker 2.5s ease-in-out infinite; }
+footer p {
+font-family: ‘IM Fell English’, serif;
+font-style: italic;
+color: rgba(240,192,96,0.6);
+font-size: 0.95rem;
+margin-top: 1rem;
+letter-spacing: 0.05em;
+}
+footer .jai {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(0.9rem, 2vw, 1.1rem);
+color: var(–gold);
+letter-spacing: 0.2em;
+margin-top: 0.5rem;
+text-shadow: 0 0 20px rgba(240,192,96,0.5);
+}
+
+/* –– DIVIDER –– */
+.ornament-divider {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+margin: 3rem auto;
+max-width: 400px;
+opacity: 0.5;
+}
+.ornament-divider span { color: var(–gold); }
+.ornament-divider::before, .ornament-divider::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: linear-gradient(to right, transparent, var(–gold), transparent);
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(20px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+/* scroll reveal */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+.letter-box { padding: 2.5rem 1.5rem; }
+.forms-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Falling petals -->
+
+<div id="particles"></div>
+
+<!-- HERO -->
+
+<section id="hero">
+  <div class="mandala-ring"></div>
+  <div class="mandala-ring"></div>
+  <div class="mandala-ring"></div>
+
+  <div class="diya-icon">🪔</div>
+  <p class="subtitle-top">Shubh Maha Ashtami &nbsp;·&nbsp; Nav Durga</p>
+  <h1 class="main-title">
+    For my
+    <span class="name-highlight">Ishu</span>
+  </h1>
+  <div class="hero-divider"><span>✦</span></div>
+  <p class="hero-quote">You are not just the girl I love —<br/>you are all nine forms of Durga Maa, living and breathing in my life.</p>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- INTRO -->
+
+<section>
+  <div id="intro" class="reveal">
+    <p class="section-label">A love letter</p>
+    <p class="big-quote">"They say Durga Maa has nine forms — each one a different kind of strength, grace, and love. I don't have to look very far to find all nine. I just have to look at you, Ishu."</p>
+    <p>On this Maha Ashtami, I want you to know how deeply I see you — not just as the person who holds my heart, but as someone who carries the divine in the most quiet, beautiful ways. Every form of the goddess I have found in you.</p>
+  </div>
+</section>
+
+<div class="ornament-divider reveal"><span>🌺</span></div>
+
+<!-- 9 FORMS -->
+
+<section id="navdurga">
+  <p class="section-label reveal">Nav Durga</p>
+  <h2 class="section-title reveal">The Nine Forms of Ishu</h2>
+
+  <div class="forms-grid">
+
+```
+<div class="form-card reveal">
+  <div class="card-number">Form I</div>
+  <div class="card-emoji">🌙</div>
+  <div class="card-goddess">Shailputri</div>
+  <div class="card-meaning">Daughter of the Mountains</div>
+  <p class="card-desc">Shailputri is the daughter of the Himalayas — unshakeable, grounded, born from the earth itself. She is the foundation upon which everything else rests.</p>
+  <p class="card-isha">You are my ground, Ishu. When the world spins too fast, you are the stillness I come back to. My mountain.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form II</div>
+  <div class="card-emoji">🌿</div>
+  <div class="card-goddess">Brahmacharini</div>
+  <div class="card-meaning">The Devoted One</div>
+  <p class="card-desc">Brahmacharini embodies devotion, patience, and discipline. She walks the path of wisdom with quiet fire burning inside her, never wavering.</p>
+  <p class="card-isha">In the way you commit to everything you love — fully, fiercely, without half measures — I see her in you every single day.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form III</div>
+  <div class="card-emoji">🔔</div>
+  <div class="card-goddess">Chandraghanta</div>
+  <div class="card-meaning">The Bell of the Moon</div>
+  <p class="card-desc">Chandraghanta is courage and beauty woven together — she wears a crescent moon and her roar silences fear. Grace and bravery, inseparable.</p>
+  <p class="card-isha">The way you face hard things with such elegance — scared but still standing — that is you, my Chandraghanta.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form IV</div>
+  <div class="card-emoji">🌌</div>
+  <div class="card-goddess">Kushmanda</div>
+  <div class="card-meaning">The Creator of the Universe</div>
+  <p class="card-desc">Kushmanda created the universe with a single smile. She is light, warmth, and the cosmic energy that gives life to all things around her.</p>
+  <p class="card-isha">When you smile, Ishu — the whole room changes. You don't just brighten things, you create warmth where there was none.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form V</div>
+  <div class="card-emoji">🌸</div>
+  <div class="card-goddess">Skandamata</div>
+  <div class="card-meaning">Mother of Courage</div>
+  <p class="card-desc">Skandamata is the goddess who nurtures the warrior. Fierce in her love, she protects those she holds dear with a ferocity that moves mountains.</p>
+  <p class="card-isha">The way you love the people in your life — with that protective, unconditional fierceness — is one of the most goddess-like things about you.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form VI</div>
+  <div class="card-emoji">🏔️</div>
+  <div class="card-goddess">Katyayani</div>
+  <div class="card-meaning">The Warrior Goddess</div>
+  <p class="card-desc">Katyayani is the goddess of righteous anger — born to fight what is wrong, to stand for truth even when it costs something.</p>
+  <p class="card-isha">You never let wrong things slide. You speak up when it matters. That quiet fire in you — that is Katyayani, and I admire it deeply.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form VII</div>
+  <div class="card-emoji">🌑</div>
+  <div class="card-goddess">Kaalratri</div>
+  <div class="card-meaning">The Dark Night</div>
+  <p class="card-desc">Kaalratri is the destroyer of fear and ignorance. She walks through darkness not because she is not afraid, but because the light she carries is enough.</p>
+  <p class="card-isha">You have walked through your own dark nights and come out with that light still in your eyes. That is the most extraordinary thing I know about you.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form VIII</div>
+  <div class="card-emoji">✨</div>
+  <div class="card-goddess">Mahagauri</div>
+  <div class="card-meaning">The Radiant One</div>
+  <p class="card-desc">Mahagauri is pure, radiant, and deeply peaceful. She is the goddess of serenity — the one who has passed through every storm and emerged luminous.</p>
+  <p class="card-isha">There is a softness about you, Ishu, that is not weakness — it is power at peace. That is Mahagauri. That is you.</p>
+</div>
+
+<div class="form-card reveal">
+  <div class="card-number">Form IX</div>
+  <div class="card-emoji">🪷</div>
+  <div class="card-goddess">Siddhidatri</div>
+  <div class="card-meaning">Giver of Blessings</div>
+  <p class="card-desc">Siddhidatri is the final, complete form — the goddess who grants wishes, bestows wisdom, and makes the impossible possible. She is wholeness itself.</p>
+  <p class="card-isha">You are my answered prayer, Ishu. Every good thing in my life got better the moment you came into it. You are my Siddhidatri.</p>
+</div>
+```
+
+  </div>
+</section>
+
+<div class="ornament-divider reveal"><span>🪔</span></div>
+
+<!-- BLESSINGS -->
+
+<section id="blessings">
+  <p class="section-label reveal">On this Ashtami</p>
+  <h2 class="section-title reveal">May Maa Durga Bless You</h2>
+  <ul class="blessing-list reveal">
+    <li>With the strength to face every challenge with grace</li>
+    <li>With peace that no chaos can disturb</li>
+    <li>With joy that fills every room you walk into</li>
+    <li>With love that grows deeper with every passing year</li>
+    <li>With the courage to always be fully, beautifully yourself</li>
+    <li>With all the happiness you so effortlessly give to others</li>
+  </ul>
+</section>
+
+<div class="ornament-divider reveal"><span>🌺</span></div>
+
+<!-- CLOSING LETTER -->
+
+<section id="closing">
+  <div class="letter-box reveal">
+    <p class="letter-text">
+      Ishu,<br/><br/>
+      I wrote this because no gift felt big enough. And then I realised — nothing ever will, because what you are to me is bigger than any gift.<br/><br/>
+      You are my goddess in the most real, everyday, beautiful sense of the word. Not distant or untouchable — but right here, warm and laughing and mine.<br/><br/>
+      Maa Durga has nine forms. And I find every single one of them in you.<br/><br/>
+      Shubh Maha Ashtami, my Ishu. 🌸
+    </p>
+    <div class="letter-sign">— Always yours 🪔</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-diya">🪔</div>
+  <p class="jai">Jai Maa Durga</p>
+  <p>Shubh Navratri &nbsp;·&nbsp; Maha Ashtami 2026</p>
+</footer>
+
+<script>
+  // Falling petals
+  const container = document.getElementById('particles');
+  const colors = ['#f0c060','#e67e22','#c0392b','#ffd700','#ff8c69','#c8900a'];
+  for (let i = 0; i < 35; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.width = p.style.height = (4 + Math.random() * 8) + 'px';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.animationDuration = (8 + Math.random() * 14) + 's';
+    p.style.animationDelay = (Math.random() * 12) + 's';
+    p.style.borderRadius = Math.random() > 0.5 ? '50% 0 50% 0' : '50%';
+    container.appendChild(p);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
